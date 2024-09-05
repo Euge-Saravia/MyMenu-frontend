@@ -1,9 +1,10 @@
-import BackButton from "../components/buttons/BackButton";
+import MealType from "../components/mealtype/MealType";
+
 
 const Home = () => {
   return (
     <div>
-      <BackButton />
+     <MealType type="Breakfast" />
     </div>
   );
 };
