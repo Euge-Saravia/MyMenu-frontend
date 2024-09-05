@@ -1,9 +1,10 @@
-import Navbar from "../components/navBar/NavBar";
+import Field from "../components/labels/Field";
+
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Field name="Meal" type="text" placeholder="Add a meal" />
     </div>
   );
 };
