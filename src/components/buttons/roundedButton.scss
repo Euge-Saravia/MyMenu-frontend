@@ -1,0 +1,11 @@
+@import "../../../styles.scss";
+
+.roundedButton{
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 50%;
+    border: none;
+    background-color: $ebony;
+    color: $white;
+    font-size: 1rem;
+}

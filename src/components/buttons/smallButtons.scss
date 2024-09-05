@@ -1,0 +1,10 @@
+@import "../../../styles.scss";
+
+.smallButtons{
+    background-color: $light-pink;
+    height: 1rem;
+    width: 3.125rem;
+    border-radius: 0.3125rem;
+    border: none;
+    @include text-cousine-regular(0.5rem, $black);
+}
