@@ -1,10 +1,9 @@
-import ChooseMeal from "../components/cardChooseaMeal/ChooseMeal";
-
+import BackButton from "../components/buttons/BackButton";
 
 const Home = () => {
   return (
     <div>
-   <ChooseMeal />
+      <BackButton />
     </div>
   );
 };
