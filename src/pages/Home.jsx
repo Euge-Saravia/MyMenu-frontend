@@ -1,10 +1,9 @@
-import Field from "../components/labels/Field";
-
+import Logo from "../components/logo/Logo";
 
 const Home = () => {
   return (
     <div>
-      <Field name="Meal" type="text" placeholder="Add a meal" />
+      <Logo />
     </div>
   );
 };
