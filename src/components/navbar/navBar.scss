@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.navBarContainer {
+    width: 20rem;
+    height: 3.75rem;
+    background-color: $light-pink;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1.25rem;
+    padding: 0 1.25rem;
+
+    .navBarLogo {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
