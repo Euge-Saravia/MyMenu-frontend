@@ -1,9 +1,10 @@
-import Logo from "../components/logo/Logo";
+import ChooseMeal from "../components/cardChooseaMeal/ChooseMeal";
+
 
 const Home = () => {
   return (
     <div>
-      <Logo />
+   <ChooseMeal />
     </div>
   );
 };
