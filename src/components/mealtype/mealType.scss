@@ -1,0 +1,13 @@
+@import "../../../styles.scss";
+
+.typeContainer{
+    background-color: #C9ADA7;
+    width: 17.625rem;
+    height: 2.5rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.3125rem;
+
+    .typeTitle{
+        @include text-cousine-regular(1rem, $black);
+    }
+}
