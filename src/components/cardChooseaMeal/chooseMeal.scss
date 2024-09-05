@@ -1,0 +1,14 @@
+@import "../../../styles.scss";
+
+.chooseMeal{
+    height: 10.9375rem;
+    width: 20rem;
+    background-color: $wine;
+    border-radius: 0.625rem;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+
+    .titleChooseMeal{
+        @include text-cousine-bold(1rem, $white);
+    }
+}
