@@ -1,15 +1,19 @@
-import { Outlet } from "react-router-dom"
-import NavBar  from "../components/navbar/Navbar"
+import { Outlet } from "react-router-dom";
+import NavBar from "../components/navbar/Navbar";
+import Logo from "../components/logo/Logo";
 
 const Layout = () => {
   return (
-    <div>
-    <main>
+    <>
+      <nav>
+        <Logo />
+      </nav>
+      <main>
         <Outlet />
-    </main>
-    <NavBar />
-    </div>
-  )
-}
+      </main>
+      <NavBar />
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
