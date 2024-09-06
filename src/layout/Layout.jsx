@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+import NavBar  from "../components/navbar/Navbar"
 
 const Layout = () => {
   return (
@@ -6,6 +7,7 @@ const Layout = () => {
     <main>
         <Outlet />
     </main>
+    <NavBar />
     </div>
   )
 }

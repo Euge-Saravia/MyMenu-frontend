@@ -1,11 +1,10 @@
-import ChooseDay from "../components/cardDays/ChooseDay";
-
+import Logo from "../components/logo/Logo";
 
 
 const Home = () => {
   return (
     <div>
-     <ChooseDay day="Monday" />
+    <Logo />
     </div>
   );
 };
