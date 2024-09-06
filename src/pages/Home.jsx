@@ -1,10 +1,11 @@
-import MealType from "../components/mealtype/MealType";
+import ChooseDay from "../components/cardDays/ChooseDay";
+
 
 
 const Home = () => {
   return (
     <div>
-     <MealType type="Breakfast" />
+     <ChooseDay day="Monday" />
     </div>
   );
 };
