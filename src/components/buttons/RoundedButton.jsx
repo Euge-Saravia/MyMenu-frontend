@@ -1,11 +1,16 @@
 import "./roundedButton.scss";
+import PropTypes from "prop-types";
 
-const RoundedButton = () => {
+const RoundedButton = ({onClick}) => {
   return (
   
-      <button className="roundedButton">+</button>
+      <button className="roundedButton" onClick={onClick}>+</button>
   
   )
 }
+
+RoundedButton.propTypes = {
+  onClick: PropTypes.func.isRequired, 
+};
 
 export default RoundedButton

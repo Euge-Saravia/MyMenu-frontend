@@ -1,7 +1,7 @@
 import "./field.scss";
 import PropTypes from "prop-types";
 
-const Field = ({ name, placeholder, value, type, error }) => {
+const Field = ({ name, placeholder, value, type, error, onChange }) => {
   return (
     <div>
       {/* <label htmlFor="Name"></label> */}
@@ -11,6 +11,7 @@ const Field = ({ name, placeholder, value, type, error }) => {
         name={name}
         placeholder={placeholder}
         value={value}
+        onChange={onChange}
       />
       {error && <p className="invalidInputText">{error}</p>}
     </div>
@@ -22,7 +23,8 @@ Field.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   type: PropTypes.string,
-  error: PropTypes.error,
+  error: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Field;
