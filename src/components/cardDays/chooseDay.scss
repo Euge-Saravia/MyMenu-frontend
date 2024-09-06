@@ -1,0 +1,13 @@
+@import "../../../styles.scss";
+
+.containerChooseDay {
+    width: 20rem;
+    height: 14.375rem;
+    background-color: $ebony;
+    border-radius: 1.25rem;
+    padding: 0.4rem;
+
+    .dayOfWeek {
+        @include text-cousine-regular(1rem, $white);
+    }
+}
