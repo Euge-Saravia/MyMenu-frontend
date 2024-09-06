@@ -1,10 +1,9 @@
-import Logo from "../components/logo/Logo";
+
 
 
 const Home = () => {
   return (
     <div>
-    <Logo />
     </div>
   );
 };
