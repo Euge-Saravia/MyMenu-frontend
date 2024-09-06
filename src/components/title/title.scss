@@ -1,0 +1,7 @@
+@import "../../../styles.scss";
+
+.pageTitle{
+    @include text-cousine-bold(1.5625rem, $ebony);
+    text-align: center;
+    margin-top: 3.625rem;
+}
