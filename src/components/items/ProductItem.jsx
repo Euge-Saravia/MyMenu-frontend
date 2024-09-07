@@ -12,7 +12,7 @@ const ProductItem = ({ product, onEdit, onDelete }) => {
   };
 
   const handleInputChange = (e) => {
-    setProductName(e.target.value)
+    setProductName(e.target.value);
   };
 
   const handleSave = () => {
@@ -21,10 +21,20 @@ const ProductItem = ({ product, onEdit, onDelete }) => {
   };
 
   return (
-    <li>
-      {editMode ? <input value={productName} onChange={handleInputChange}></input> : product.product}
-      {editMode ? <SmallButtons title="Save" onClick={handleSave}/> : <SmallButtons title="Edit" onClick={handleEditClick} />}
-      <SmallButtons title="Delete" onClick={() => onDelete(product.id)} />
+    <li className="itemProduct">
+      {editMode ? (
+        <input value={productName} onChange={handleInputChange}></input>
+      ) : (
+        product.product
+      )}
+      <div className="buttonsWrapper">
+        {editMode ? (
+          <SmallButtons title="Save" onClick={handleSave} />
+        ) : (
+          <SmallButtons title="Edit" onClick={handleEditClick} />
+        )}
+        <SmallButtons title="Delete" onClick={() => onDelete(product.id)} />
+      </div>
     </li>
   );
 };

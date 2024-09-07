@@ -1,6 +1,33 @@
+@import "../../../styles.scss";
 
-.productsContainer{
-    border: 1px solid black;
-    width: 20rem;
-    height: 14.375rem;
+.wrapperProductsContainer {
+
+    .inputAndButtonContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.875rem;
+        margin-bottom: 2.125rem;
+        padding: 0 2.5rem;
+    }
+
+    .ulContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 0 2.5rem;
+    }
+
+    .notProducts {
+        @include text-cousine-regular(1rem, $black);
+        text-align: center;
+        margin-top: 3.75rem;
+    }
+
+    .deleteAllButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 5rem;
+    }
+
+
 }

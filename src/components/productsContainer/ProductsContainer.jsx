@@ -93,16 +93,18 @@ const ProductsContainer = () => {
   };
 
   return (
-    <div>
-      <Field
-        name="product"
-        placeholder="Add a product"
-        value={productName}
-        type="text"
-        error={error}
-        onChange={handleInputChange}
-      />
-      <RoundedButton onClick={handleAddProduct} />
+    <div className="wrapperProductsContainer">
+      <div className="inputAndButtonContainer">
+        <Field
+          name="product"
+          placeholder="Add a product"
+          value={productName}
+          type="text"
+          error={error}
+          onChange={handleInputChange}
+        />
+        <RoundedButton onClick={handleAddProduct} />
+      </div>
 
       {/* Mostrar mensajes de carga o error */}
       {loadingProducts && <p>Loading products...</p>}
@@ -111,7 +113,8 @@ const ProductsContainer = () => {
       {errorPost && <p>Error adding product: {errorPost}</p>}
 
       {/* Mostrar los productos si existen */}
-      <ul>
+
+      <ul className="ulContainer">
         {products && products.length > 0 ? (
           products.map((product) => (
             <ProductItem
@@ -122,11 +125,15 @@ const ProductsContainer = () => {
             />
           ))
         ) : (
-          <p>No hay productos disponibles</p>
+          <p className="notProducts">There are no products, add one</p>
         )}
       </ul>
 
-      <LargeButtons title="Delete All" onClick={handleDeleteAllProducts} />
+      <div className="deleteAllButton">
+        {products && products.length > 0 ? (
+          <LargeButtons title="Delete All" onClick={handleDeleteAllProducts} />
+        ) : null}
+      </div>
     </div>
   );
 };
