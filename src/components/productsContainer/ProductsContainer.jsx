@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import "./productsContainer.scss";
 import Field from "../labels/Field";
 import RoundedButton from "../buttons/RoundedButton";
-import { API_GET_PRODUCTS, API_POST_PRODUCTS } from "../../config/url";
-import UseApiGetProd from "../../service/UseApiGetProd"; // Importa el hook para GET
-import UseApiPostProd from "../../service/UseApiPostProd"; // Importa el hook para POST
+import { API_PRODUCTS } from "../../config/url";
+import UseApiGetProd from "../../service/UseApiGetProd";
+import UseApiPostProd from "../../service/UseApiPostProd";
 import ProductItem from "../items/ProductItem";
+import UseApiDeleteProd from "../../service/UseApiDeleteProd";
+import UseApiPutProd from "../../service/UseApiPutProd";
 
 const ProductsContainer = () => {
   const [productName, setProductName] = useState("");
@@ -17,14 +19,17 @@ const ProductsContainer = () => {
     data,
     loading: loadingProducts,
     error: errorProducts,
-  } = UseApiGetProd(API_GET_PRODUCTS);
+  } = UseApiGetProd(API_PRODUCTS);
 
   // Usar el hook UseApiPostProd para manejar el POST
   const {
     postData,
     loading: loadingPost,
     error: errorPost,
-  } = UseApiPostProd(API_POST_PRODUCTS);
+  } = UseApiPostProd(API_PRODUCTS);
+
+  const { editData } = UseApiPutProd(API_PRODUCTS);
+  const { deleteData } = UseApiDeleteProd(API_PRODUCTS);
 
   // Actualizar los productos cuando se obtienen de la API
   useEffect(() => {
@@ -53,14 +58,26 @@ const ProductsContainer = () => {
     }
   };
 
-  const handleEditProduct = (id) => {
-    // Lógica para editar el producto con el ID correspondiente
-    console.log(`Editando producto con ID: ${id}`);
+  const handleEditProduct = async (id, newProductName) => {
+    const updatedProduct = await editData(id, { product: newProductName });
+    if (updatedProduct) {
+      setProducts(
+        products.map((product) =>
+          product.id === id ? updatedProduct : product
+        )
+      );
+    } else {
+      console.error("Error al editar el producto");
+    }
   };
 
-  const handleDeleteProduct = (id) => {
-    // Lógica para eliminar el producto con el ID correspondiente
-    console.log(`Eliminando producto con ID: ${id}`);
+  const handleDeleteProduct = async (id) => {
+    const success = await deleteData(id);
+    if (success) {
+      setProducts(products.filter((product) => product.id !== id));
+    } else {
+      console.error("Error al eliminar el producto");
+    }
   };
 
   return (
@@ -89,7 +106,7 @@ const ProductsContainer = () => {
               key={product.id}
               product={product}
               onEdit={handleEditProduct}
-              onDelete={handleDeleteProduct}
+              onDelete={(id) => handleDeleteProduct(id)}
             />
           ))
         ) : (
