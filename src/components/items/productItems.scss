@@ -1,0 +1,24 @@
+@import "../../../styles.scss";
+
+.itemProduct {
+    @include text-cousine-regular(1rem, $black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.25rem;
+
+    input {
+        background-color: $shell;
+        border: none;
+        border-radius: 5px;
+        width: 9.125rem;
+        height: 1.875rem;
+        padding: 0 0.2rem;
+    }
+
+    .buttonsWrapper {
+        @include text-cousine-regular(0.5rem, $black);
+        display: flex;
+        gap: 1rem;
+    }
+}
