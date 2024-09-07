@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import "./productsContainer.scss";
 import Field from "../labels/Field";
 import RoundedButton from "../buttons/RoundedButton";
-import { API_PRODUCTS } from "../../config/url";
+import { API_DELETEALL_PRODUCTS, API_PRODUCTS } from "../../config/url";
 import UseApiGetProd from "../../service/UseApiGetProd";
 import UseApiPostProd from "../../service/UseApiPostProd";
 import ProductItem from "../items/ProductItem";
 import UseApiDeleteProd from "../../service/UseApiDeleteProd";
 import UseApiPutProd from "../../service/UseApiPutProd";
+import LargeButtons from "../buttons/LargeButtons";
+import UseApiDeleteAllProd from "../../service/UseApiDeleteAllProd";
 
 const ProductsContainer = () => {
   const [productName, setProductName] = useState("");
@@ -30,6 +32,7 @@ const ProductsContainer = () => {
 
   const { editData } = UseApiPutProd(API_PRODUCTS);
   const { deleteData } = UseApiDeleteProd(API_PRODUCTS);
+  const { deleteAllData } = UseApiDeleteAllProd(API_DELETEALL_PRODUCTS);
 
   // Actualizar los productos cuando se obtienen de la API
   useEffect(() => {
@@ -80,6 +83,15 @@ const ProductsContainer = () => {
     }
   };
 
+  const handleDeleteAllProducts = async () => {
+    const success = await deleteAllData();
+    if (success) {
+      setProducts([]); // Limpia el estado si la eliminación fue exitosa
+    } else {
+      console.error("Error al eliminar todos los productos");
+    }
+  };
+
   return (
     <div>
       <Field
@@ -113,6 +125,8 @@ const ProductsContainer = () => {
           <p>No hay productos disponibles</p>
         )}
       </ul>
+
+      <LargeButtons title="Delete All" onClick={handleDeleteAllProducts} />
     </div>
   );
 };
