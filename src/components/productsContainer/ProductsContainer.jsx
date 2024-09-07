@@ -5,6 +5,7 @@ import RoundedButton from "../buttons/RoundedButton";
 import { API_GET_PRODUCTS, API_POST_PRODUCTS } from "../../config/url";
 import UseApiGetProd from "../../service/UseApiGetProd"; // Importa el hook para GET
 import UseApiPostProd from "../../service/UseApiPostProd"; // Importa el hook para POST
+import ProductItem from "../items/ProductItem";
 
 const ProductsContainer = () => {
   const [productName, setProductName] = useState("");
@@ -12,10 +13,18 @@ const ProductsContainer = () => {
   const [products, setProducts] = useState([]); // Estado local para almacenar los productos
 
   // Usar el hook UseApiGetProd para manejar el GET
-  const { data, loading: loadingProducts, error: errorProducts } = UseApiGetProd(API_GET_PRODUCTS);
+  const {
+    data,
+    loading: loadingProducts,
+    error: errorProducts,
+  } = UseApiGetProd(API_GET_PRODUCTS);
 
   // Usar el hook UseApiPostProd para manejar el POST
-  const { postData, loading: loadingPost, error: errorPost } = UseApiPostProd(API_POST_PRODUCTS);
+  const {
+    postData,
+    loading: loadingPost,
+    error: errorPost,
+  } = UseApiPostProd(API_POST_PRODUCTS);
 
   // Actualizar los productos cuando se obtienen de la API
   useEffect(() => {
@@ -44,6 +53,16 @@ const ProductsContainer = () => {
     }
   };
 
+  const handleEditProduct = (id) => {
+    // Lógica para editar el producto con el ID correspondiente
+    console.log(`Editando producto con ID: ${id}`);
+  };
+
+  const handleDeleteProduct = (id) => {
+    // Lógica para eliminar el producto con el ID correspondiente
+    console.log(`Eliminando producto con ID: ${id}`);
+  };
+
   return (
     <div>
       <Field
@@ -65,7 +84,14 @@ const ProductsContainer = () => {
       {/* Mostrar los productos si existen */}
       <ul>
         {products && products.length > 0 ? (
-          products.map((product) => <li key={product.id}>{product.product}</li>)
+          products.map((product) => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              onEdit={handleEditProduct}
+              onDelete={handleDeleteProduct}
+            />
+          ))
         ) : (
           <p>No hay productos disponibles</p>
         )}
