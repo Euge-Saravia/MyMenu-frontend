@@ -1,6 +1,6 @@
 @import "../../../styles.scss";
 
-.chooseMeal{
+.choosePlate{
     height: 10.9375rem;
     width: 20rem;
     background-color: $wine;
@@ -8,7 +8,7 @@
     padding-left: 0.5rem;
     padding-top: 0.5rem;
 
-    .titleChooseMeal{
+    .titleChoosePlate{
         @include text-cousine-bold(1rem, $white);
     }
 }

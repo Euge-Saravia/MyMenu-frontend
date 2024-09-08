@@ -24,7 +24,7 @@ Field.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   error: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 export default Field;

@@ -1,0 +1,15 @@
+@import "../../styles.scss";
+
+.wrapperInputBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.875rem;
+    margin-bottom: 2.125rem;
+    padding: 0 2.5rem;
+}
+
+.wrapperChooseMeal {
+    padding: 0 2.3rem;
+    margin-top: 85%;
+}
