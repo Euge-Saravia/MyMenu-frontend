@@ -6,6 +6,9 @@
     height: 2.5rem;
     padding: 0.2rem 0.3rem;
     border-radius: 0.3125rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25rem;
 
     .typeTitle{
         @include text-cousine-regular(1rem, $black);
