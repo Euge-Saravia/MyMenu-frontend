@@ -5,7 +5,7 @@ const ChooseMeal = () => {
     <div className="chooseMeal">
       <h3 className="titleChooseMeal">Choose a meal</h3>
     </div>
-  )
-}
+  );
+};
 
-export default ChooseMeal
+export default ChooseMeal;
