@@ -5,13 +5,12 @@ import WeekDate from "../components/weekDate/WeekDate";
 import { format, startOfWeek, endOfWeek, addWeeks, subWeeks } from "date-fns";
 import { useEffect, useState } from "react";
 import useApiGetMenu from "../service/UseApiGetMenu";
+import { API_GET_MENUS } from "../config/url";
 
 const MenuHome = () => {
   // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { data: menus, fetchData } = useApiGetMenu(
-    "http://localhost:3001/menus"
-  );
+  const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
 
   const days = [
     "Monday",
