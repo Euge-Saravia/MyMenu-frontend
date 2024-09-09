@@ -2,7 +2,7 @@ import ChooseDay from "../components/cardDays/ChooseDay";
 import Title from "../components/title/Title";
 import "./menuHome.scss";
 import WeekDate from "../components/weekDate/WeekDate";
-import { format, startOfWeek, endOfWeek, addWeeks, subWeeks } from "date-fns";
+import { format, startOfWeek, endOfWeek, addWeeks, subWeeks, addDays } from "date-fns";
 import { useEffect, useState } from "react";
 import useApiGetMenu from "../service/UseApiGetMenu";
 import { API_GET_MENUS } from "../config/url";
@@ -14,15 +14,15 @@ const MenuHome = () => {
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
   const navigate = useNavigate();
 
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  // const days = [
+  //   "Monday",
+  //   "Tuesday",
+  //   "Wednesday",
+  //   "Thursday",
+  //   "Friday",
+  //   "Saturday",
+  //   "Sunday",
+  // ];
 
   const startDate = format(
     startOfWeek(currentDate, { weekStartsOn: 1 }),
@@ -72,7 +72,7 @@ const MenuHome = () => {
   };
 
   const handleMealClick = (meal, day) => {
-    navigate(`/addPlate`, { state: { meal, day } });
+    navigate(`/addPlate`, { state: { meal, day: format(day, "yyyy-MM-dd") } });
   };
 
   return (
@@ -85,16 +85,20 @@ const MenuHome = () => {
         onNextWeek={handleNextWeek}
       />
       <div className="containerDays">
-        {days.map((day, index) => (
-          <ChooseDay
-            key={index}
-            day={day}
-            breakfast={getMenuForDayAndMeal(day, "Breakfast")}
-            lunch={getMenuForDayAndMeal(day, "Lunch")}
-            dinner={getMenuForDayAndMeal(day, "Dinner")}
-            onMealClick={handleMealClick}
-          />
-        ))}
+      {Array.from({ length: 7 }, (_, index) => {
+          // Calcular la fecha de cada día a partir de startDate
+          const dayDate = addDays(startDate, index);
+          return (
+            <ChooseDay
+              key={index}
+              day={format(dayDate, "EEE")} // Nombre del día (Monday, Tuesday, etc.)
+              breakfast={getMenuForDayAndMeal(dayDate, "Breakfast")}
+              lunch={getMenuForDayAndMeal(dayDate, "Lunch")}
+              dinner={getMenuForDayAndMeal(dayDate, "Dinner")}
+              onMealClick={(meal) => handleMealClick(meal, dayDate)} // Pasar la fecha al hacer clic
+            />
+          );
+        })}
       </div>
     </>
   );
