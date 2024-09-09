@@ -64,6 +64,8 @@ const MenuHome = () => {
 
   // Función para manejar el clic en una comida (desayuno, almuerzo, cena)
   const handleMealClick = (day, mealType, menuId) => {
+    console.log(day);
+    console.log(mealType);
     // Navegamos a la pantalla de agregar plato, pasando día, tipo de comida y menuId
     navigate("/addPlate", { state: { day, mealType, menuId } });
   };

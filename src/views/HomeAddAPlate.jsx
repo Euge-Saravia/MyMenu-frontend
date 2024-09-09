@@ -41,6 +41,9 @@ const HomeAddAPlate = () => {
         <Field type="text" name="name" placeholder="Add a plate" />
         <RoundedButton />
       </div>
+      <div className="plateContainer">
+    
+      </div>
       <LargeButtons title="Save" onClick={handleSave}/>
       <div className="wrapperChooseMeal">
       <ChoosePlate onPlateSelect={handlePlateSelect} />
