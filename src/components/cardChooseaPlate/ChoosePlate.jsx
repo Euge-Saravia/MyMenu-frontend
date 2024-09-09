@@ -3,6 +3,7 @@ import { API_PLATES } from "../../config/url";
 import UseApiGetProd from "../../service/UseApiGetProd";
 import "./choosePlate.scss";
 import PlateItem from "../items/PlateItem";
+import UseApiPutProd from "../../service/UseApiPutProd";
 
 const ChooseMeal = () => {
   const [plates, setPlates] = useState([]);
@@ -13,14 +14,38 @@ const ChooseMeal = () => {
     error: errorProducts,
   } = UseApiGetProd(API_PLATES);
 
+  // Usar el hook personalizado para PUT
+  const {
+    editData,
+    loading: loadingEdit,
+    error: errorEdit,
+  } = UseApiPutProd(API_PLATES);
+
   useEffect(() => {
     if (data) {
-      setPlates(data); 
+      setPlates(data);
     }
   }, [data]);
 
-  const handleEditPlate = () => {
-    console.log("Click al btn edit");
+  // Marcar la función como async
+  const handleEditPlate = async (id, newDescription) => {
+    const updatedPlate = { description: newDescription };
+
+    try {
+      // Llamada a la función editData desde el hook
+      const updatedData = await editData(id, updatedPlate);
+
+      if (updatedData) {
+        // Actualizar visualmente el estado de los platos si la respuesta fue exitosa
+        setPlates((prevPlates) =>
+          prevPlates.map((plate) =>
+            plate.id === updatedData.id ? updatedData : plate
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error updating plate:", error);
+    }
   };
 
   return (
@@ -29,15 +54,13 @@ const ChooseMeal = () => {
       {/* Mostrar mensajes de carga o error */}
       {loadingProducts && <p>Loading products...</p>}
       {errorProducts && <p>Error fetching products: {errorProducts}</p>}
+      {loadingEdit && <p>Saving plate...</p>}
+      {errorEdit && <p>Error updating plate: {errorEdit}</p>}
 
       <ul>
         {plates && plates.length > 0 ? (
           plates.map((plate) => (
-            <PlateItem
-              key={plate.id}
-              plate={plate}
-              onEdit={handleEditPlate}
-            />
+            <PlateItem key={plate.id} plate={plate} onEdit={handleEditPlate} />
           ))
         ) : (
           <p className="notProducts">There are no products, add one</p>
