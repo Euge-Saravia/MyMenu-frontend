@@ -47,20 +47,24 @@ const MenuHome = () => {
     }
   }, [startDate, endDate]);
 
+
   // const getMenuForDayAndMeal = (day, mealType) => {
   //   return menus?.find((menu) => {
-  //     const menuDate = format(new Date(menu.date), "EEEE");
-  //     console.log(menu.date);
-  //     return menuDate === day && menu.meal.type === mealType;
+  //     const menuDate = format(new Date(menu.date), "yyyy-MM-dd"); // Usamos el formato completo de la fecha
+  //     const dayFormatted = format(day, "yyyy-MM-dd"); // Formatear el día en el mismo formato
+  //     return menuDate === dayFormatted && menu.meal.type === mealType;
   //   });
   // };
 
   const getMenuForDayAndMeal = (day, mealType) => {
-    return menus?.find((menu) => {
-      const menuDate = format(new Date(menu.date), "yyyy-MM-dd"); // Usamos el formato completo de la fecha
-      const dayFormatted = format(day, "yyyy-MM-dd"); // Formatear el día en el mismo formato
+    const dayFormatted = format(day, "yyyy-MM-dd");
+    console.log(`Buscando menús para ${mealType} el ${dayFormatted}`);
+
+    return menus?.filter((menu) => {
+      const menuDate = format(new Date(menu.date), "yyyy-MM-dd");
+      console.log(`Comparando menú en ${menuDate} para ${menu.meal.type}`);
       return menuDate === dayFormatted && menu.meal.type === mealType;
-    });
+    })[0]; // Tomar el primer menú si coincide
   };
   
 
