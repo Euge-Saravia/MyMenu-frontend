@@ -6,11 +6,13 @@ import { format, startOfWeek, endOfWeek, addWeeks, subWeeks } from "date-fns";
 import { useEffect, useState } from "react";
 import useApiGetMenu from "../service/UseApiGetMenu";
 import { API_GET_MENUS } from "../config/url";
+import { useNavigate } from "react-router-dom";
 
 const MenuHome = () => {
   // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
+  const navigate = useNavigate();
 
   const days = [
     "Monday",
@@ -69,6 +71,10 @@ const MenuHome = () => {
     setCurrentDate(addWeeks(currentDate, 1));
   };
 
+  const handleMealClick = (meal, day) => {
+    navigate(`/addPlate`, { state: { meal, day } });
+  };
+
   return (
     <>
       <Title title="Add a meal" />
@@ -86,6 +92,7 @@ const MenuHome = () => {
             breakfast={getMenuForDayAndMeal(day, "Breakfast")}
             lunch={getMenuForDayAndMeal(day, "Lunch")}
             dinner={getMenuForDayAndMeal(day, "Dinner")}
+            onMealClick={handleMealClick}
           />
         ))}
       </div>
