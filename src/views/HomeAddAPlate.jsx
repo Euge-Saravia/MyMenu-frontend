@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 const HomeAddAPlate = () => {
   const location = useLocation();
-  const { meal, day } = location.state || {};
+  const { mealId, day } = location.state || {};
 
   // // Estado para almacenar el plato seleccionado
   // const [plate, setPlate] = useState(null);
@@ -42,7 +42,7 @@ const HomeAddAPlate = () => {
     <>
       <Title title="Add a plate" />
       <h2>
-        Add a plate for {meal} on {day}
+        Add a plate for {mealId} on {day}
       </h2>
       <div className="wrapperInputBtn">
         <Field type="text" name="name" placeholder="Add a plate" />
