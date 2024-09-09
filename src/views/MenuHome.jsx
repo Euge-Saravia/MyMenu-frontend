@@ -24,6 +24,13 @@ const MenuHome = () => {
   //   "Sunday",
   // ];
 
+  const mealIds = {
+    breakfast: 1,
+    lunch: 2,
+    dinner: 52
+  };
+  
+
   const startDate = format(
     startOfWeek(currentDate, { weekStartsOn: 1 }),
     "yyyy-MM-dd"
@@ -40,13 +47,22 @@ const MenuHome = () => {
     }
   }, [startDate, endDate]);
 
+  // const getMenuForDayAndMeal = (day, mealType) => {
+  //   return menus?.find((menu) => {
+  //     const menuDate = format(new Date(menu.date), "EEEE");
+  //     console.log(menu.date);
+  //     return menuDate === day && menu.meal.type === mealType;
+  //   });
+  // };
+
   const getMenuForDayAndMeal = (day, mealType) => {
     return menus?.find((menu) => {
-      const menuDate = format(new Date(menu.date), "EEEE");
-      console.log(menu.date);
-      return menuDate === day && menu.meal.type === mealType;
+      const menuDate = format(new Date(menu.date), "yyyy-MM-dd"); // Usamos el formato completo de la fecha
+      const dayFormatted = format(day, "yyyy-MM-dd"); // Formatear el día en el mismo formato
+      return menuDate === dayFormatted && menu.meal.type === mealType;
     });
   };
+  
 
   // Función para calcular el rango de la semana en formato deseado
   const getFormattedWeek = (date) => {
@@ -71,8 +87,9 @@ const MenuHome = () => {
     setCurrentDate(addWeeks(currentDate, 1));
   };
 
-  const handleMealClick = (meal, day) => {
-    navigate(`/addPlate`, { state: { meal, day: format(day, "yyyy-MM-dd") } });
+  const handleMealClick = (mealType, day) => {
+    const mealId = mealIds[mealType]; // Obtener el ID de la comida
+    navigate(`/addPlate`, { state: { mealId, day: format(day, "yyyy-MM-dd") } });
   };
 
   return (
@@ -91,11 +108,11 @@ const MenuHome = () => {
           return (
             <ChooseDay
               key={index}
-              day={format(dayDate, "EEE")} // Nombre del día (Monday, Tuesday, etc.)
+              day={format(dayDate, "EEEE")} // Nombre del día (Monday, Tuesday, etc.)
               breakfast={getMenuForDayAndMeal(dayDate, "Breakfast")}
               lunch={getMenuForDayAndMeal(dayDate, "Lunch")}
               dinner={getMenuForDayAndMeal(dayDate, "Dinner")}
-              onMealClick={(meal) => handleMealClick(meal, dayDate)} // Pasar la fecha al hacer clic
+              onMealClick={(mealType) => handleMealClick(mealType, dayDate)} // Pasar la fecha al hacer clic
             />
           );
         })}
