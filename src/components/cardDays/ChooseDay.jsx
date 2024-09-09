@@ -1,23 +1,31 @@
 import "./chooseDay.scss";
 import PropTypes from "prop-types";
-import MealType from "../mealtype/MealType";
-import { Link } from "react-router-dom";
 
-const ChooseDay = ({ day }) => {
+const ChooseDay = ({ day, breakfast, lunch, dinner }) => {
   return (
     <div className="containerChooseDay">
       <h5 className="dayOfWeek">{day}</h5>
-      <Link to="/addPlate">
-        <MealType type="Breakfast" />
-      </Link>
-      <MealType type="Lunch" />
-      <MealType type="Dinner" />
+      <div className="typeContainer">
+        <h5 className="typeTitle">Breakfast:</h5>{" "}
+        {breakfast?.plate.description || "No meal planned"}
+      </div>
+      <div className="typeContainer">
+        <h5 className="typeTitle">Lunch:</h5>{" "}
+        {lunch?.plate.description || "No meal planned"}
+      </div>
+      <div className="typeContainer">
+        <h5 className="typeTitle">Dinner:</h5>{" "}
+        {dinner?.plate.description || "No meal planned"}
+      </div>
     </div>
   );
 };
 
 ChooseDay.propTypes = {
-  day: PropTypes.string,
+  day: PropTypes.string.isRequired,
+  breakfast: PropTypes.object,
+  lunch: PropTypes.object,
+  dinner: PropTypes.object,
 };
 
 export default ChooseDay;
