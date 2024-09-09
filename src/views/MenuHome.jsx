@@ -9,7 +9,9 @@ import useApiGetMenu from "../service/UseApiGetMenu";
 const MenuHome = () => {
   // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { data: menus, fetchData } = useApiGetMenu("http://localhost:3001/menus");
+  const { data: menus, fetchData } = useApiGetMenu(
+    "http://localhost:3001/menus"
+  );
 
   const days = [
     "Monday",
@@ -35,11 +37,12 @@ const MenuHome = () => {
     if (startDate && endDate) {
       fetchData({ starDate: startDate, enDate: endDate });
     }
-  }, [startDate, endDate, fetchData]);
+  }, [startDate, endDate]);
 
   const getMenuForDayAndMeal = (day, mealType) => {
     return menus?.find((menu) => {
       const menuDate = format(new Date(menu.date), "EEEE");
+      console.log(menu.date);
       return menuDate === day && menu.meal.type === mealType;
     });
   };
@@ -71,6 +74,7 @@ const MenuHome = () => {
     <>
       <Title title="Add a meal" />
       <WeekDate
+        className="weekDate"
         formattedWeek={formattedWeek}
         onPreviousWeek={handlePreviousWeek}
         onNextWeek={handleNextWeek}
