@@ -11,6 +11,6 @@ const LargeButtons = ({title, onClick}) => {
 
 LargeButtons.propTypes ={
     title: PropTypes.string,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func
 };
 export default LargeButtons

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import SmallButtons from "../buttons/SmallButtons";
 import { useState } from "react";
 
-const PlateItem = ({ plate, onEdit }) => {
+const PlateItem = ({ plate, onEdit, onClick }) => {
   const [editMode, setEditMode] = useState(false);
   const [plateName, setPlateName] = useState(plate.description);
 
@@ -20,7 +20,7 @@ const PlateItem = ({ plate, onEdit }) => {
   };
   return (
     <>
-      <li>
+      <li onClick={() => onClick(plate)}>
         {editMode ? (
           <input value={plateName} onChange={handleInputChange}></input>
         ) : (
@@ -42,6 +42,7 @@ PlateItem.propTypes = {
     description: PropTypes.string.isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default PlateItem;

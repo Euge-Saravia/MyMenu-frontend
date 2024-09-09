@@ -4,7 +4,7 @@ import UseApiGetProd from "../../service/UseApiGetProd";
 import "./choosePlate.scss";
 import PlateItem from "../items/PlateItem";
 
-const ChooseMeal = () => {
+const ChooseMeal = ({onPlateSelect}) => {
   const [plates, setPlates] = useState([]);
 
   const {
@@ -23,6 +23,10 @@ const ChooseMeal = () => {
     console.log("Click al btn edit");
   };
 
+  const handlePlateClick = (plate) => {
+    onPlateSelect(plate); // Llamamos a onPlateSelect cuando se selecciona un plate
+  };
+
   return (
     <div className="choosePlate">
       <h3 className="titleChoosePlate">Choose a plate</h3>
@@ -37,6 +41,7 @@ const ChooseMeal = () => {
               key={plate.id}
               plate={plate}
               onEdit={handleEditPlate}
+              onClick={() => handlePlateClick(plate)}
             />
           ))
         ) : (
