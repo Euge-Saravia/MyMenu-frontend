@@ -1,5 +1,4 @@
 import Field from "../components/labels/Field";
-import Title from "../components/title/Title";
 import RoundedButton from "../components/buttons/RoundedButton";
 import "./homeAddPlate.scss";
 import ChoosePlate from "../components/cardChooseaPlate/ChoosePlate";
@@ -40,8 +39,7 @@ const HomeAddAPlate = () => {
 
   return (
     <>
-      <Title title="Add a plate" />
-      <h2>
+      <h2 className="addAPlate">
         Add a plate for {mealId} on {day}
       </h2>
       <div className="wrapperInputBtn">
