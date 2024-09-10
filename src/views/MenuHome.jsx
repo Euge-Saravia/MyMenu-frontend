@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const MenuHome = () => {
   // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
+  console.log(currentDate);
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const MenuHome = () => {
   const mealIds = {
     breakfast: 1,
     lunch: 2,
-    dinner: 52
+    dinner: 3
   };
   
 
@@ -47,20 +48,16 @@ const MenuHome = () => {
     }
   }, [startDate, endDate]);
 
-  // const getMenuForDayAndMeal = (day, mealType) => {
-  //   return menus?.find((menu) => {
-  //     const menuDate = format(new Date(menu.date), "EEEE");
-  //     console.log(menu.date);
-  //     return menuDate === day && menu.meal.type === mealType;
-  //   });
-  // };
 
   const getMenuForDayAndMeal = (day, mealType) => {
-    return menus?.find((menu) => {
-      const menuDate = format(new Date(menu.date), "yyyy-MM-dd"); // Usamos el formato completo de la fecha
-      const dayFormatted = format(day, "yyyy-MM-dd"); // Formatear el día en el mismo formato
+    const dayFormatted = format(day, "yyyy-MM-dd");
+    console.log(`Buscando menús para ${mealType} el ${dayFormatted}`);
+
+    return menus?.filter((menu) => {
+      const menuDate = format(new Date(menu.date), "yyyy-MM-dd");
+      console.log(`Comparando menú en ${menuDate} para ${menu.meal.type}`);
       return menuDate === dayFormatted && menu.meal.type === mealType;
-    });
+    })[0]; // Tomar el primer menú si coincide
   };
   
 
@@ -108,7 +105,7 @@ const MenuHome = () => {
           return (
             <ChooseDay
               key={index}
-              day={format(dayDate, "EEEE")} // Nombre del día (Monday, Tuesday, etc.)
+              day={format(dayDate, "EEEE")} 
               breakfast={getMenuForDayAndMeal(dayDate, "Breakfast")}
               lunch={getMenuForDayAndMeal(dayDate, "Lunch")}
               dinner={getMenuForDayAndMeal(dayDate, "Dinner")}

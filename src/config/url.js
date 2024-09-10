@@ -8,3 +8,5 @@ export const API_PLATES = API_BASE_URL + "plates";
 
 export const API_GET_MENUS = API_BASE_URL + "menus";
 
+export const API_GET_MENU_BY_DATE_MEAL = API_BASE_URL + "menu";
+
