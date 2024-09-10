@@ -6,15 +6,15 @@ const ChooseDay = ({ day, breakfast, lunch, dinner, onMealClick }) => {
     <div className="containerChooseDay">
       <h5 className="dayOfWeek">{day}</h5>
       <div className="typeContainer" onClick={() => onMealClick('breakfast', day)}>
-        <h5 className="typeTitle">Breakfast:</h5>{" "}
+        <h5 className="typeTitle">Breakfast</h5>{" "}
         {breakfast?.plate.description || "No meal planned"}
       </div>
       <div className="typeContainer" onClick={() => onMealClick('lunch', day)}>
-        <h5 className="typeTitle">Lunch:</h5>{" "}
+        <h5 className="typeTitle">Lunch</h5>{" "}
         {lunch?.plate.description || "No meal planned"}
       </div>
       <div className="typeContainer" onClick={() => onMealClick('dinner', day)}>
-        <h5 className="typeTitle">Dinner:</h5>{" "}
+        <h5 className="typeTitle">Dinner</h5>{" "}
         {dinner?.plate.description || "No meal planned"}
       </div>
     </div>

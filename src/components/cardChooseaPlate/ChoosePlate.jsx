@@ -57,7 +57,7 @@ const ChooseMeal = () => {
       {loadingEdit && <p>Saving plate...</p>}
       {errorEdit && <p>Error updating plate: {errorEdit}</p>}
 
-      <ul>
+      <ul className="plateDbContainer">
         {plates && plates.length > 0 ? (
           plates.map((plate) => (
             <PlateItem key={plate.id} plate={plate} onEdit={handleEditPlate} />
