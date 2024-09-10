@@ -112,7 +112,7 @@ const MenuHome = () => {
           return (
             <ChooseDay
               key={index}
-              day={format(dayDate, "EEEE")} // Nombre del día (Monday, Tuesday, etc.)
+              day={format(dayDate, "EEEE")} 
               breakfast={getMenuForDayAndMeal(dayDate, "Breakfast")}
               lunch={getMenuForDayAndMeal(dayDate, "Lunch")}
               dinner={getMenuForDayAndMeal(dayDate, "Dinner")}
