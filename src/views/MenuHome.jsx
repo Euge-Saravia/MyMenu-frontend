@@ -85,8 +85,8 @@ const MenuHome = () => {
   };
 
   const handleMealClick = (mealType, day) => {
-    const mealId = mealIds[mealType]; // Obtener el ID de la comida
-    navigate(`/addPlate`, { state: { mealId, day: format(day, "yyyy-MM-dd") } });
+    
+    navigate(`/addPlate`, { state: { mealType, day: format(day, "yyyy-MM-dd") } });
   };
 
   return (

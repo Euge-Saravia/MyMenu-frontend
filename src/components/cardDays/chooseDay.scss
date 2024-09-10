@@ -14,8 +14,8 @@
         margin-left: 0.3rem;
     }
 
-    .typeContainer{
-        background-color: $shell;
+    .typeContainer {
+        background-color: $peach;
         width: 17.625rem;
         height: 20%;
         padding: 0.2rem 0.3rem;
@@ -24,10 +24,9 @@
         margin-right: auto;
         margin-bottom: 1.25rem;
         @include text-cousine-regular(0.8rem, $black);
-    
-        .typeTitle{
+
+        .typeTitle {
             @include text-cousine-regular(1rem, $ebony);
-            text-decoration: underline;
         }
     }
 }
