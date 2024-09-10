@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const MenuHome = () => {
   // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
+  console.log(currentDate);
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const MenuHome = () => {
   const mealIds = {
     breakfast: 1,
     lunch: 2,
-    dinner: 52
+    dinner: 3
   };
   
 
@@ -47,14 +48,6 @@ const MenuHome = () => {
     }
   }, [startDate, endDate]);
 
-
-  // const getMenuForDayAndMeal = (day, mealType) => {
-  //   return menus?.find((menu) => {
-  //     const menuDate = format(new Date(menu.date), "yyyy-MM-dd"); // Usamos el formato completo de la fecha
-  //     const dayFormatted = format(day, "yyyy-MM-dd"); // Formatear el día en el mismo formato
-  //     return menuDate === dayFormatted && menu.meal.type === mealType;
-  //   });
-  // };
 
   const getMenuForDayAndMeal = (day, mealType) => {
     const dayFormatted = format(day, "yyyy-MM-dd");
