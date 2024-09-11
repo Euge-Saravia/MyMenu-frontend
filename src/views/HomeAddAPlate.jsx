@@ -67,7 +67,7 @@ const handleDelete = async () => {
             <p>No plates yet for {mealType.name} on {day}</p>
           )}
         </>
-        <ChoosePlate />
+        <ChoosePlate selectedDay={day} mealType={mealType.id} fetchData={fetchData} />
       </div>
     </>
   );
