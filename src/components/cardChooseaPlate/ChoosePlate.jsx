@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { API_PLATES } from "../../config/url";
+import { API_GET_MENUS, API_PLATES } from "../../config/url";
 import UseApiGetProd from "../../service/UseApiGetProd";
 import "./choosePlate.scss";
 import PlateItem from "../items/PlateItem";
 import UseApiPutProd from "../../service/UseApiPutProd";
+import UseApiPostProd from "../../service/UseApiPostProd";
+import PropTypes from "prop-types";
 
-const ChooseMeal = () => {
+const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
   const [plates, setPlates] = useState([]);
 
   const {
@@ -13,6 +15,10 @@ const ChooseMeal = () => {
     loading: loadingProducts,
     error: errorProducts,
   } = UseApiGetProd(API_PLATES);
+
+  const {
+    postData,
+  } = UseApiPostProd(API_GET_MENUS); // Hook para la solicitud POST
 
   // Usar el hook personalizado para PUT
   const {
@@ -26,6 +32,26 @@ const ChooseMeal = () => {
       setPlates(data);
     }
   }, [data]);
+
+  // Función para crear un nuevo menú al hacer clic en el botón redondo
+  const handleCreateMenu = async (plateId) => {
+    const newMenu = {
+      date: selectedDay, // Usa la fecha seleccionada
+      meal: { id: mealType }, // Usa el ID del tipo de comida (1 = breakfast, 2 = lunch, etc.)
+      plate: { id: plateId }, // Usa el plato seleccionado
+    };
+
+    try {
+      const createdMenu = await postData(newMenu); // Enviar los datos al backend
+      if (createdMenu) {
+        console.log("Menu created successfully:", createdMenu);
+        // Aquí volvemos a obtener los menús actualizados para que se refresque en la UI
+        fetchData({ date: selectedDay, mealType: mealType });
+      }
+    } catch (error) {
+      console.error("Error creating menu:", error);
+    }
+  };
 
   // Marcar la función como async
   const handleEditPlate = async (id, newDescription) => {
@@ -60,7 +86,12 @@ const ChooseMeal = () => {
       <ul className="plateDbContainer">
         {plates && plates.length > 0 ? (
           plates.map((plate) => (
-            <PlateItem key={plate.id} plate={plate} onEdit={handleEditPlate} />
+            <PlateItem
+              key={plate.id}
+              plate={plate}
+              onEdit={handleEditPlate}
+              onRoundButtonClick={() => handleCreateMenu(plate.id)} // Pasa el plateId al hacer clic en el botón
+            />
           ))
         ) : (
           <p className="notProducts">There are no products, add one</p>
@@ -68,6 +99,12 @@ const ChooseMeal = () => {
       </ul>
     </div>
   );
+};
+
+ChooseMeal.propTypes = {
+  selectedDay: PropTypes.string.isRequired, // selectedDay debe ser una cadena (fecha en formato string)
+  mealType: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, // mealType puede ser un número o una cadena (dependerá del valor que recibas)
+  fetchData: PropTypes.func.isRequired // fetchData debe ser una función, ya que la estás usando para refrescar los datos
 };
 
 export default ChooseMeal;

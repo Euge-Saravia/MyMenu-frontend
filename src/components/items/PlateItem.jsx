@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import SmallButtons from "../buttons/SmallButtons";
 import { useState } from "react";
+import RoundedButton from "../buttons/RoundedButton";
 
-const PlateItem = ({ plate, onEdit }) => {
+const PlateItem = ({ plate, onEdit, onRoundButtonClick }) => {
   const [editMode, setEditMode] = useState(false);
   const [plateName, setPlateName] = useState(plate.description);
 
@@ -26,6 +27,7 @@ const PlateItem = ({ plate, onEdit }) => {
         ) : (
           plate.description
         )}
+        <RoundedButton onClick={onRoundButtonClick}/>
         {editMode ? (
           <SmallButtons title="Save" onClick={handleSave} />
         ) : (
@@ -42,6 +44,7 @@ PlateItem.propTypes = {
     description: PropTypes.string.isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,
+  onRoundButtonClick: PropTypes.func.isRequired
 };
 
 export default PlateItem;
