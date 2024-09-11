@@ -37,11 +37,6 @@ const HomeAddAPlate = () => {
     fetchData({ date: day, mealType: mealType.id });
   }, [day, mealType.id]);
 
-  // Extraer la descripción del plato
-  const plateDescription =
-    data && data.length > 0 ? data[0].plate.description : null;
-  const menuId = data && data.length > 0 ? data[0].id : null;
-
   // Función para manejar el cambio de la descripción del nuevo plato
   const handleInputChange = (e) => {
     setNewPlateDescription(e.target.value);
@@ -71,17 +66,16 @@ const HomeAddAPlate = () => {
       console.error("Error creating menu:", error);
     }
   };
+
   // Función para manejar la eliminación del menú
-  const handleDelete = async () => {
-    if (menuId) {
-      const success = await deleteData(menuId);
-      if (success) {
-        console.log("Menu deleted successfully");
-        // Aquí puedes hacer lo que necesites, como volver a cargar la lista de menús o redirigir
-        fetchData({ date: day, mealType: mealType.id }); // Opcionalmente recargar los datos después de la eliminación
-      } else {
-        console.error("Error deleting menu");
-      }
+  const handleDelete = async (menuId) => {
+    const success = await deleteData(menuId);
+    if (success) {
+      console.log("Menu deleted successfully");
+      // Aquí puedes hacer lo que necesites, como volver a cargar la lista de menús o redirigir
+      fetchData({ date: day, mealType: mealType.id }); // Opcionalmente recargar los datos después de la eliminación
+    } else {
+      console.error("Error deleting menu");
     }
   };
 
@@ -101,23 +95,25 @@ const HomeAddAPlate = () => {
         <RoundedButton onClick={handleCreateMenu} />
       </div>
       <div className="wrapperChooseMeal">
-        <>
-          {console.log(plateDescription)}
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>Error: {error.message}</p>
-          ) : plateDescription ? (
-            <div className="plateAndButtonWrapper">
-              <p>{plateDescription}</p>
-              <SmallButtons title="Delete" onClick={handleDelete} />
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : data && data.length > 0 ? (
+          data.map((menu) => (
+            <div className="plateAndButtonWrapper" key={menu.id}>
+              <p>{menu.plate.description}</p>
+              <SmallButtons
+                title="Delete"
+                onClick={() => handleDelete(menu.id)}
+              />
             </div>
-          ) : (
-            <p>
-              No plates yet for {mealType.name} on {day}
-            </p>
-          )}
-        </>
+          ))
+        ) : (
+          <p>
+            No plates yet for {mealType.name} on {day}
+          </p>
+        )}
         <ChoosePlate
           selectedDay={day}
           mealType={mealType.id}
