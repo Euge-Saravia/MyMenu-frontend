@@ -15,23 +15,6 @@ const MenuHome = () => {
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
   const navigate = useNavigate();
 
-  // const days = [
-  //   "Monday",
-  //   "Tuesday",
-  //   "Wednesday",
-  //   "Thursday",
-  //   "Friday",
-  //   "Saturday",
-  //   "Sunday",
-  // ];
-
-  const mealIds = {
-    breakfast: 1,
-    lunch: 2,
-    dinner: 3
-  };
-  
-
   const startDate = format(
     startOfWeek(currentDate, { weekStartsOn: 1 }),
     "yyyy-MM-dd"
