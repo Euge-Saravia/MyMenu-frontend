@@ -15,10 +15,10 @@ const UseApiDeleteAllProd = (url) => {
         throw new Error(`Error! Status: ${response.status}`);
       }
 
-      return true; // Retorna true si la eliminación fue exitosa
+      return true; 
     } catch (error) {
       setError(error.message);
-      return false; // Retorna false si hubo un error
+      return false; 
     } finally {
       setLoading(false);
     }
