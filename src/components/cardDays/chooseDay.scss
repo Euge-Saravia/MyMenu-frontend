@@ -2,16 +2,15 @@
 
 .containerChooseDay {
     width: 20rem;
-    height: 14.375rem;
     background-color: $wine;
     border-radius: 1.25rem;
     padding: 0.4rem;
     margin-bottom: 1.25rem;
 
     .dayOfWeek {
-        @include text-cousine-regular(1rem, $white);
-        margin-bottom: 0.5rem;
-        margin-left: 0.3rem;
+        @include text-cousine-regular(1.2rem, $white);
+        margin-bottom: 0.7rem;
+        margin-left: 0.5rem;
     }
 
     .typeContainer {
@@ -25,7 +24,7 @@
         @include text-cousine-regular(0.8rem, $black);
 
         .typeTitle {
-            @include text-cousine-regular(1rem, $ebony);
+            @include text-cousine-bold(1rem, $ebony);
         }
     }
 }
