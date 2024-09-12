@@ -1,0 +1,27 @@
+@import "../../../styles.scss";
+
+.plateItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+
+    .plateText {
+        flex: 1;
+        word-wrap: break-word;
+    }
+
+    input {
+        background-color: $shell;
+        border: none;
+        border-radius: 5px;
+        height: 1.6rem;
+        padding: 0 0.2rem;
+    }
+
+    .buttonGroup {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}
