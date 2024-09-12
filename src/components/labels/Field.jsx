@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 const Field = ({ name, placeholder, value, type, error, onChange }) => {
   return (
     <div>
-      {/* <label htmlFor="Name"></label> */}
       <input
         className="addInput"
         type={type}

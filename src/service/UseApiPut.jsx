@@ -20,7 +20,7 @@ const UseApiPut = (url) => {
       }
 
       const jsonData = await response.json();
-      return jsonData; // Devuelve la respuesta del servidor
+      return jsonData; 
     } catch (error) {
       setError(error.message);
       return null;

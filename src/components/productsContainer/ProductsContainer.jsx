@@ -14,16 +14,14 @@ import UseApiDelete from "../../service/UseApiDelete";
 const ProductsContainer = () => {
   const [productName, setProductName] = useState("");
   const [error, setError] = useState("");
-  const [products, setProducts] = useState([]); // Estado local para almacenar los productos
+  const [products, setProducts] = useState([]); 
 
-  // Usar el hook UseApiGetProd para manejar el GET
   const {
     data,
     loading: loadingProducts,
     error: errorProducts,
   } = UseApiGet(API_PRODUCTS);
 
-  // Usar el hook UseApiPostProd para manejar el POST
   const {
     postData,
     loading: loadingPost,
@@ -34,10 +32,10 @@ const ProductsContainer = () => {
   const { deleteData } = UseApiDelete(API_PRODUCTS);
   const { deleteAllData } = UseApiDeleteAllProd(API_DELETEALL_PRODUCTS);
 
-  // Actualizar los productos cuando se obtienen de la API
+
   useEffect(() => {
     if (data) {
-      setProducts(data); // Almacenar los productos en el estado
+      setProducts(data); 
     }
   }, [data]);
 
@@ -55,9 +53,8 @@ const ProductsContainer = () => {
     const newProduct = await postData({ product: productName });
 
     if (newProduct) {
-      // Si la respuesta es exitosa, agregar el nuevo producto al estado
       setProducts([...products, newProduct]);
-      setProductName(""); // Limpiar el campo de input
+      setProductName("");
     }
   };
 
@@ -86,7 +83,7 @@ const ProductsContainer = () => {
   const handleDeleteAllProducts = async () => {
     const success = await deleteAllData();
     if (success) {
-      setProducts([]); // Limpia el estado si la eliminación fue exitosa
+      setProducts([]);
     } else {
       console.error("Error al eliminar todos los productos");
     }
@@ -106,13 +103,10 @@ const ProductsContainer = () => {
         <RoundedButton onClick={handleAddProduct} />
       </div>
 
-      {/* Mostrar mensajes de carga o error */}
       {loadingProducts && <p>Loading products...</p>}
       {errorProducts && <p>Error fetching products: {errorProducts}</p>}
       {loadingPost && <p>Adding product...</p>}
       {errorPost && <p>Error adding product: {errorPost}</p>}
-
-      {/* Mostrar los productos si existen */}
 
       <ul className="ulContainer">
         {products && products.length > 0 ? (
