@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.choosePlate{
+    width: 20rem;
+    background-color: $wine;
+    border-radius: 0.625rem;
+    padding: 0.8rem;
+
+    .titleChoosePlate{
+        @include text-cousine-bold(1rem, $white);
+    }
+
+    .plateDbContainer{
+        list-style: none;
+        @include text-cousine-regular(1rem, $white);     
+    }
+}

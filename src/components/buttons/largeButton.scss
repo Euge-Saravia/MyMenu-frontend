@@ -1,0 +1,11 @@
+@import "../../../styles.scss";
+
+.largeButtons{
+    background-color: $light-pink;
+    height: 1.875rem;
+    width: 13.125rem;
+    border-radius: 1.25rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid $black;
+    @include text-cousine-regular(1rem, $black);
+}

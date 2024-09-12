@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.backButton {
+    background-color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+
+    .backButtonImg {
+        width: 1.875rem;
+        height: 1.875rem;
+    }
+
+    .backButtonTitle {
+        @include text-cousine-regular(1rem, $black);
+    }
+}

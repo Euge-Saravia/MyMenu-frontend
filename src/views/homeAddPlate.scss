@@ -1,0 +1,36 @@
+@import "../../styles.scss";
+
+.addAPlate {
+    @include text-cousine-bold(1.25rem, $ebony);
+    margin-top: 3rem;
+    padding: 0 2.5rem;
+    text-align: center;
+}
+
+.wrapperInputBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.875rem;
+    margin-bottom: 2.125rem;
+    padding: 0 2.5rem;
+
+
+}
+
+.wrapperChooseMeal {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2.3rem;
+}
+
+
+.plateAndButtonWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    p {
+        @include text-cousine-regular(1rem, $black);
+    }
+}

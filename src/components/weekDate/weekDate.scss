@@ -1,0 +1,26 @@
+@import "../../../styles.scss";
+
+
+.dateWrapper{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1.875rem;
+
+    .arrowBtn{
+        border: none;
+        background-color: $white;
+    }
+    
+    .formatWeek{
+        @include text-cousine-regular(0.7rem, $wine);
+    }
+    .arrowImg{
+        width: 1.875rem;
+        height: 1.875rem;
+    }
+
+}
+

@@ -1,0 +1,30 @@
+@import "../../../styles.scss";
+
+.containerChooseDay {
+    width: 20rem;
+    background-color: $wine;
+    border-radius: 1.25rem;
+    padding: 0.4rem;
+    margin-bottom: 1.25rem;
+
+    .dayOfWeek {
+        @include text-cousine-regular(1.2rem, $white);
+        margin-bottom: 0.7rem;
+        margin-left: 0.5rem;
+    }
+
+    .typeContainer {
+        background-color: $peach;
+        width: 17.625rem;
+        padding: 0.2rem 0.3rem;
+        border-radius: 0.3125rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.25rem;
+        @include text-cousine-regular(0.8rem, $black);
+
+        .typeTitle {
+            @include text-cousine-bold(1rem, $ebony);
+        }
+    }
+}
