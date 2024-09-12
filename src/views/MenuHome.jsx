@@ -40,7 +40,7 @@ const MenuHome = () => {
       const menuDate = format(new Date(menu.date), "yyyy-MM-dd");
       console.log(`Comparando menú en ${menuDate} para ${menu.meal.type}`);
       return menuDate === dayFormatted && menu.meal.type === mealType;
-    })[0]; // Tomar el primer menú si coincide
+    }) ||[]; 
   };
   
 

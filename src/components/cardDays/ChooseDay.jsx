@@ -7,15 +7,33 @@ const ChooseDay = ({ day, breakfast, lunch, dinner, onMealClick }) => {
       <h5 className="dayOfWeek">{day}</h5>
       <div className="typeContainer" onClick={() => onMealClick({id: 1, name:"Breakfast"}, day)}>
         <h5 className="typeTitle">Breakfast</h5>{" "}
-        {breakfast?.plate.description || "No meal planned"}
+        {breakfast.length > 0 ? (
+          breakfast.map((menu, index) => (
+            <p key={index}>{menu.plate.description}</p>
+          ))
+        ) : (
+          <p>No meal planned</p>
+        )}
       </div>
       <div className="typeContainer" onClick={() => onMealClick({id: 2, name:"Lunch"}, day)}>
         <h5 className="typeTitle">Lunch</h5>{" "}
-        {lunch?.plate.description || "No meal planned"}
+        {lunch.length > 0 ? (
+          lunch.map((menu, index) => (
+            <p key={index}>{menu.plate.description}</p>
+          ))
+        ) : (
+          <p>No meal planned</p>
+        )}
       </div>
       <div className="typeContainer" onClick={() => onMealClick({id: 3, name:"Dinner"}, day)}>
         <h5 className="typeTitle">Dinner</h5>{" "}
-        {dinner?.plate.description || "No meal planned"}
+        {dinner.length > 0 ? (
+          dinner.map((menu, index) => (
+            <p key={index}>{menu.plate.description}</p>
+          ))
+        ) : (
+          <p>No meal planned</p>
+        )}
       </div>
     </div>
   );
