@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import UseApiPut from "../../service/UseApiPut";
 import UseApiGet from "../../service/UseApiGet";
 
-const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
+const ChoosePlate = ({ selectedDay, mealType, fetchData }) => {
   const [plates, setPlates] = useState([]);
 
   const {
@@ -101,10 +101,10 @@ const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
   );
 };
 
-ChooseMeal.propTypes = {
+ChoosePlate.propTypes = {
   selectedDay: PropTypes.string.isRequired, 
   mealType: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, 
   fetchData: PropTypes.func.isRequired 
 };
 
-export default ChooseMeal;
+export default ChoosePlate;
