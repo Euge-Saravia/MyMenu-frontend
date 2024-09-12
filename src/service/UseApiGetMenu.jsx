@@ -8,7 +8,6 @@ const useApiGetMenu = (endpoint) => {
   const fetchData = async (params = {}) => {
     setLoading(true);
     try {
-      // Construir la URL con los parámetros de consulta (query params)
       const queryParams = new URLSearchParams(params).toString();
       const url = `${endpoint}?${queryParams}`;
 

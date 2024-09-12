@@ -7,7 +7,7 @@ const UseApiGet = (url) => {
 
   useEffect(() => {
     const getData = async (url) => {
-      setLoading(true);  // Inicia la carga
+      setLoading(true);
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -17,10 +17,10 @@ const UseApiGet = (url) => {
         setData(json_data);
       } catch (error) {
         console.error(`Error fetching data: ${error}`);
-        setError(error.message);  // Guarda el error
+        setError(error.message);  
         setData(null);
       } finally {
-        setLoading(false);  // Finaliza la carga
+        setLoading(false);  
       }
     };
 

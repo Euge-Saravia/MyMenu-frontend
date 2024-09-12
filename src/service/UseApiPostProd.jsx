@@ -20,7 +20,7 @@ const UseApiPostProd = (url) => {
       }
 
       const json_data = await response.json();
-      return json_data; // Devuelve la respuesta del servidor
+      return json_data; 
     } catch (error) {
       setError(error.message);
       return null;

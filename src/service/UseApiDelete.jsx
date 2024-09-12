@@ -15,7 +15,7 @@ const UseApiDelete = (url) => {
         throw new Error(`Error! Status: ${response.status}`);
       }
 
-      return true; // Devuelve true si la eliminación fue exitosa
+      return true; 
     } catch (error) {
       setError(error.message);
       return false;

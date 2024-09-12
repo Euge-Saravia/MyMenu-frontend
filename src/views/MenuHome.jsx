@@ -9,7 +9,6 @@ import { API_GET_MENUS } from "../config/url";
 import { useNavigate } from "react-router-dom";
 
 const MenuHome = () => {
-  // Estado para manejar la fecha actual de la semana
   const [currentDate, setCurrentDate] = useState(new Date());
   console.log(currentDate);
   const { data: menus, fetchData } = useApiGetMenu(API_GET_MENUS);
@@ -25,7 +24,6 @@ const MenuHome = () => {
   );
 
   useEffect(() => {
-    // Evitar la solicitud inicial si los datos ya están cargados
     if (startDate && endDate) {
       fetchData({ starDate: startDate, enDate: endDate });
     }
@@ -43,8 +41,6 @@ const MenuHome = () => {
     }) ||[]; 
   };
   
-
-  // Función para calcular el rango de la semana en formato deseado
   const getFormattedWeek = (date) => {
     const startDate = startOfWeek(date, { weekStartsOn: 1 });
     const endDate = endOfWeek(date, { weekStartsOn: 1 });
@@ -55,14 +51,12 @@ const MenuHome = () => {
     )} - ${format(endDate, "d")}`;
   };
 
-  // Formatear la semana actual
   const formattedWeek = getFormattedWeek(currentDate);
 
-  // Función para ir a la semana anterior
   const handlePreviousWeek = () => {
     setCurrentDate(subWeeks(currentDate, 1));
   };
-  // Función para ir a la siguiente semana
+  
   const handleNextWeek = () => {
     setCurrentDate(addWeeks(currentDate, 1));
   };
@@ -83,7 +77,6 @@ const MenuHome = () => {
       />
       <div className="containerDays">
       {Array.from({ length: 7 }, (_, index) => {
-          // Calcular la fecha de cada día a partir de startDate
           const dayDate = addDays(startDate, index);
           return (
             <ChooseDay
@@ -92,7 +85,7 @@ const MenuHome = () => {
               breakfast={getMenuForDayAndMeal(dayDate, "Breakfast")}
               lunch={getMenuForDayAndMeal(dayDate, "Lunch")}
               dinner={getMenuForDayAndMeal(dayDate, "Dinner")}
-              onMealClick={(mealType) => handleMealClick(mealType, dayDate)} // Pasar la fecha al hacer clic
+              onMealClick={(mealType) => handleMealClick(mealType, dayDate)} 
             />
           );
         })}
