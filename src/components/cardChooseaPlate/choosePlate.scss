@@ -12,21 +12,6 @@
 
     .plateDbContainer{
         list-style: none;
-        @include text-cousine-regular(1rem, $white);
-
-        li{
-            display: flex;
-            justify-content: space-between;
-            margin-right: 0.2rem;
-            margin-top: 0.6rem;
-
-            input{
-                background-color: $shell;
-                border: none;
-                border-radius: 5px;
-                height: 1.6rem;
-                padding: 0 0.2rem;
-            }
-        }
+        @include text-cousine-regular(1rem, $white);     
     }
 }

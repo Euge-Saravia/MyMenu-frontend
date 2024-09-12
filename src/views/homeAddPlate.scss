@@ -21,7 +21,6 @@
 .wrapperChooseMeal {
     display: flex;
     flex-direction: column;
-    gap: 15rem;
     padding: 0 2.3rem;
 }
 
@@ -29,6 +28,7 @@
 .plateAndButtonWrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0.5rem;
 
     p {
         @include text-cousine-regular(1rem, $black);
