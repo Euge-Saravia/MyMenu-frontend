@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { API_GET_MENUS, API_PLATES } from "../../config/url";
-import UseApiGetProd from "../../service/UseApiGetProd";
 import "./choosePlate.scss";
 import PlateItem from "../items/PlateItem";
-import UseApiPutProd from "../../service/UseApiPutProd";
 import UseApiPostProd from "../../service/UseApiPostProd";
 import PropTypes from "prop-types";
+import UseApiPut from "../../service/UseApiPut";
+import UseApiGet from "../../service/UseApiGet";
 
 const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
   const [plates, setPlates] = useState([]);
@@ -14,7 +14,7 @@ const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
     data,
     loading: loadingProducts,
     error: errorProducts,
-  } = UseApiGetProd(API_PLATES);
+  } = UseApiGet(API_PLATES);
 
   const {
     postData,
@@ -25,7 +25,7 @@ const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
     editData,
     loading: loadingEdit,
     error: errorEdit,
-  } = UseApiPutProd(API_PLATES);
+  } = UseApiPut(API_PLATES);
 
   useEffect(() => {
     if (data) {
@@ -102,9 +102,9 @@ const ChooseMeal = ({ selectedDay, mealType, fetchData }) => {
 };
 
 ChooseMeal.propTypes = {
-  selectedDay: PropTypes.string.isRequired, // selectedDay debe ser una cadena (fecha en formato string)
-  mealType: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, // mealType puede ser un número o una cadena (dependerá del valor que recibas)
-  fetchData: PropTypes.func.isRequired // fetchData debe ser una función, ya que la estás usando para refrescar los datos
+  selectedDay: PropTypes.string.isRequired, 
+  mealType: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, 
+  fetchData: PropTypes.func.isRequired 
 };
 
 export default ChooseMeal;

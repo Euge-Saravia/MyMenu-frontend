@@ -10,7 +10,7 @@ const RoundedButton = ({onClick}) => {
 }
 
 RoundedButton.propTypes = {
-  onClick: PropTypes.func, 
+  onClick: PropTypes.func.isRequired
 };
 
 export default RoundedButton

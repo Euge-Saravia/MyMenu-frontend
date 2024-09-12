@@ -3,13 +3,13 @@ import "./productsContainer.scss";
 import Field from "../labels/Field";
 import RoundedButton from "../buttons/RoundedButton";
 import { API_DELETEALL_PRODUCTS, API_PRODUCTS } from "../../config/url";
-import UseApiGetProd from "../../service/UseApiGetProd";
 import UseApiPostProd from "../../service/UseApiPostProd";
 import ProductItem from "../items/ProductItem";
-import UseApiDeleteProd from "../../service/UseApiDeleteProd";
-import UseApiPutProd from "../../service/UseApiPutProd";
 import LargeButtons from "../buttons/LargeButtons";
 import UseApiDeleteAllProd from "../../service/UseApiDeleteAllProd";
+import UseApiPut from "../../service/UseApiPut";
+import UseApiGet from "../../service/UseApiGet";
+import UseApiDelete from "../../service/UseApiDelete";
 
 const ProductsContainer = () => {
   const [productName, setProductName] = useState("");
@@ -21,7 +21,7 @@ const ProductsContainer = () => {
     data,
     loading: loadingProducts,
     error: errorProducts,
-  } = UseApiGetProd(API_PRODUCTS);
+  } = UseApiGet(API_PRODUCTS);
 
   // Usar el hook UseApiPostProd para manejar el POST
   const {
@@ -30,8 +30,8 @@ const ProductsContainer = () => {
     error: errorPost,
   } = UseApiPostProd(API_PRODUCTS);
 
-  const { editData } = UseApiPutProd(API_PRODUCTS);
-  const { deleteData } = UseApiDeleteProd(API_PRODUCTS);
+  const { editData } = UseApiPut(API_PRODUCTS);
+  const { deleteData } = UseApiDelete(API_PRODUCTS);
   const { deleteAllData } = UseApiDeleteAllProd(API_DELETEALL_PRODUCTS);
 
   // Actualizar los productos cuando se obtienen de la API

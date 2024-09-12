@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const UseApiGetProd = (url) => {
+const UseApiGet = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,5 +30,5 @@ const UseApiGetProd = (url) => {
   return { data, loading, error };
 };
 
-export default UseApiGetProd;
+export default UseApiGet;
 
