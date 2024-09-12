@@ -1,5 +1,5 @@
 
-# Frontend: Meal Planner Application
+# MyMenu
 
 ## Overview
 
