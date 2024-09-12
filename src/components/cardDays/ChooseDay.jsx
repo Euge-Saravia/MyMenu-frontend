@@ -44,7 +44,7 @@ ChooseDay.propTypes = {
   breakfast: PropTypes.object,
   lunch: PropTypes.object,
   dinner: PropTypes.object,
-  onMealClick: PropTypes.func
+  onMealClick: PropTypes.func.isRequired
 };
 
 export default ChooseDay;

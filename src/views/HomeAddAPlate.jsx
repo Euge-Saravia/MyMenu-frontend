@@ -11,8 +11,8 @@ import {
 } from "../config/url";
 import useApiGetMenu from "../service/UseApiGetMenu";
 import SmallButtons from "../components/buttons/SmallButtons";
-import UseApiDeleteProd from "../service/UseApiDeleteProd";
 import UseApiPostProd from "../service/UseApiPostProd";
+import UseApiDelete from "../service/UseApiDelete";
 
 const HomeAddAPlate = () => {
   const location = useLocation();
@@ -27,7 +27,7 @@ const HomeAddAPlate = () => {
   );
 
   // Usa el hook UseApiDeleteProd para eliminar el menú
-  const { deleteData } = UseApiDeleteProd(API_DELETE_MENU);
+  const { deleteData } = UseApiDelete(API_DELETE_MENU);
 
   // Usa el hook UseApiPostProd para crear un nuevo menú
   const { postData } = UseApiPostProd(API_GET_MENUS);

@@ -1,35 +1,30 @@
 import { useState } from "react";
 
-const UseApiPutProd = (url) => {
+const UseApiDelete = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const editData = async (id, updatedData) => {
+  const deleteData = async (id) => {
     setLoading(true);
     try {
       const response = await fetch(`${url}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
+        method: "DELETE",
       });
 
       if (!response.ok) {
         throw new Error(`Error! Status: ${response.status}`);
       }
 
-      const jsonData = await response.json();
-      return jsonData; // Devuelve la respuesta del servidor
+      return true; // Devuelve true si la eliminación fue exitosa
     } catch (error) {
       setError(error.message);
-      return null;
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  return { editData, loading, error };
+  return { deleteData, loading, error };
 };
 
-export default UseApiPutProd;
+export default UseApiDelete;
